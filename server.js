@@ -29,21 +29,44 @@ app.post('/api/calculate', (req, res) => {
   const number1 = parseFloat(req.body.number1);
   const number2 = parseFloat(req.body.number2);
   const operation = req.body.operation;
-  
+
   // value is changing
   let result; 
-  if (operation === '+') {
-  result = number1 + number2;
-  }
-  else if (operation === '-') {
+
+  switch(operation) {
+  case '+':
+    result = number1 + number2;
+    break;
+  
+  case '-':
     result = number1 - number2;
-  } else if (operation === '*') {
+    break;
+    
+  case '*':
     result = number1 * number2;
-  } else if (operation === '/') {
+    break;
+    
+  case '/':
+    if (number2 === 0) {
+      return res.status(400).json({ error: 'Division by zero is not allowed' });
+    }
     result = number1 / number2;
-  } else {
+    break;
+  
+  case '^':
+    result = Math.pow(number1, number2);
+    break;
+  
+  case '√':
+  if (number1 < 0) {
+    return res.status(400).json({ error: 'Square root of negative number is not allowed' });
+  }  
+  result = Math.sqrt(number1);
+  break;
+    
+  default:
     return res.status(400).json({ error: 'Invalid operation' });
-  } 
+}
   res.json ({  
     number1: number1,
     number2: number2,
