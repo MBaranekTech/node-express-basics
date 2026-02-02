@@ -21,7 +21,8 @@ My first hands-on project to understand the **POST/GET** workflow:
   + Parsing incoming JSON data with `req.body`
   + Using **switch statement** to handle multiple operations efficiently
   + Working with **Math functions** (`Math.pow()`, `Math.sqrt()`)
-  + **Input validation** (division by zero, negative square roots)
+  + Implementing **for loops** for iterative calculations (factorial)
+  + **Input validation** (division by zero, negative square roots, factorial constraints)
   + Returning calculated results via `res.json()`
   + Understanding the complete request/response cycle
 
@@ -32,6 +33,7 @@ My first hands-on project to understand the **POST/GET** workflow:
 - ➗ Division (with zero-check)
 - 🧪 Power (x^y)
 - √ Square Root (with negative number validation)
+- ! Factorial (with non-negative integer validation)
 
 **Access:** `http://localhost:3000/calculator`
 
@@ -50,7 +52,7 @@ My first hands-on project to understand the **POST/GET** workflow:
 | **GET** | `/calculator` | Modern calculator with liquid design. |
 | **GET** | `/api/info` | Returns information about my current learning path. |
 | **GET** | `/api/user` | Fetches user data (currently stored in-memory). |
-| **POST** | `/api/calculate` | Performs mathematical operations (+, -, *, /, ^, √). |
+| **POST** | `/api/calculate` | Performs mathematical operations (+, -, *, /, ^, √, !). |
 | **POST** | `/api/greet` | Returns a personalized greeting message. |
 | **POST** | `/api/user` | Allows sending new user data to the server. |
 
@@ -80,6 +82,15 @@ My first hands-on project to understand the **POST/GET** workflow:
   "number1": 16,
   "number2": 0,
   "operation": "√"
+}
+```
+
+**Factorial:**
+```json
+{
+  "number1": 5,
+  "number2": 0,
+  "operation": "!"
 }
 ```
 
@@ -147,7 +158,8 @@ Access the API:
 * ✅ Using `parseFloat()` for data type conversion
 * ✅ Implementing **switch statement** for multiple conditions (more efficient than if-else)
 * ✅ Working with **JavaScript Math functions** (`Math.pow()`, `Math.sqrt()`)
-* ✅ **Input validation** - preventing errors (division by zero, negative square roots)
+* ✅ Understanding **for loops** and iterative calculations
+* ✅ **Input validation** - preventing errors (division by zero, negative square roots, factorial constraints)
 * ✅ Returning JSON responses with `res.json()`
 * ✅ Creating multiple endpoints on a single server
 * ✅ Building a complete full-stack mini-application

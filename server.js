@@ -63,6 +63,16 @@ app.post('/api/calculate', (req, res) => {
   }  
   result = Math.sqrt(number1);
   break;
+
+  case '!':
+  if (number1 < 0) {
+    return res.status(400).json({ error: 'Factorial of negative number is not allowed' });
+  }  
+  result = 1;
+  for (let i = 1; i <= number1; i++) {
+    result *= i;
+  }
+  break;
     
   default:
     return res.status(400).json({ error: 'Invalid operation' });
