@@ -80,6 +80,16 @@ app.post('/api/calculate', (req, res) => {
     }
     result = number1 % number2;
     break;
+  
+  case 'sin':
+    result = Math.sin(number1*(Math.PI/180)); // Convert degrees to radians
+    break;
+  case 'cos':
+    result = Math.cos(number1*(Math.PI/180)); // Convert degrees to radians
+    break;
+  case 'tan':
+    result = Math.tan(number1*(Math.PI/180)); // Convert degrees to radians
+    break;
 
   default:
     return res.status(400).json({ error: 'Invalid operation' });

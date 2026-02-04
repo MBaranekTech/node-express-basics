@@ -9,7 +9,7 @@ This repository showcases my progression in backend development, focusing on:
 * **Server Architecture:** Building a robust Express.js environment
 * **HTTP Methods:** Implementation of **GET** and **POST** endpoints
 * **Data Validation:** Input validation and error handling
-* **Mathematical Operations:** From basic arithmetic to advanced functions
+* **Mathematical Operations:** From basic arithmetic to trigonometric functions
 * **RESTful API Design:** Clean, structured API endpoints
 
 ## 🧮 Advanced Calculator Features
@@ -27,6 +27,11 @@ A modern, full-featured calculator with glassmorphism design supporting:
 - ✅ **Power (^)** - Raise number to a power
 - ✅ **Square Root (√)** - Calculate square root (with negative check)
 - ✅ **Factorial (!)** - Calculate factorial (with negative check)
+
+### Trigonometric Functions
+- ✅ **Sine (sin)** - Calculate sine of angle in degrees
+- ✅ **Cosine (cos)** - Calculate cosine of angle in degrees
+- ✅ **Tangent (tan)** - Calculate tangent of angle in degrees
 
 **Access:** `http://localhost:3000/calculator`
 
@@ -51,32 +56,50 @@ A modern, full-featured calculator with glassmorphism design supporting:
 ### POST /api/calculate - Request Format
 ```json
 {
-  "number1": 10,
-  "number2": 3,
-  "operation": "%"
+  "number1": 30,
+  "number2": 0,
+  "operation": "sin"
 }
 ```
 
 ### Supported Operations
 
-| Operation | Symbol | Example | Result |
-|-----------|--------|---------|--------|
-| Addition | `+` | `10 + 5` | `15` |
-| Subtraction | `-` | `10 - 5` | `5` |
-| Multiplication | `*` | `10 * 5` | `50` |
-| Division | `/` | `10 / 5` | `2` |
-| Modulo | `%` | `10 % 3` | `1` |
-| Power | `^` | `2 ^ 3` | `8` |
-| Square Root | `√` | `√16` | `4` |
-| Factorial | `!` | `5!` | `120` |
+| Operation | Symbol | Example | Result | Notes |
+|-----------|--------|---------|--------|-------|
+| Addition | `+` | `10 + 5` | `15` | - |
+| Subtraction | `-` | `10 - 5` | `5` | - |
+| Multiplication | `*` | `10 * 5` | `50` | - |
+| Division | `/` | `10 / 5` | `2` | Zero-check |
+| Modulo | `%` | `10 % 3` | `1` | Zero-check |
+| Power | `^` | `2 ^ 3` | `8` | - |
+| Square Root | `√` | `√16` | `4` | Negative check |
+| Factorial | `!` | `5!` | `120` | Negative check |
+| Sine | `sin` | `sin(30)` | `0.5` | Input in degrees |
+| Cosine | `cos` | `cos(60)` | `0.5` | Input in degrees |
+| Tangent | `tan` | `tan(45)` | `1` | Input in degrees |
+
+### Trigonometric Function Examples
+
+| Function | Input (degrees) | Output | Mathematical Meaning |
+|----------|----------------|--------|---------------------|
+| sin(0°) | 0 | 0 | sin(0°) = 0 |
+| sin(30°) | 30 | 0.5 | sin(30°) = 0.5 |
+| sin(90°) | 90 | 1 | sin(90°) = 1 |
+| cos(0°) | 0 | 1 | cos(0°) = 1 |
+| cos(60°) | 60 | 0.5 | cos(60°) = 0.5 |
+| cos(90°) | 90 | 0 | cos(90°) ≈ 0 |
+| tan(0°) | 0 | 0 | tan(0°) = 0 |
+| tan(45°) | 45 | 1 | tan(45°) = 1 |
+
+**Note:** Trigonometric functions accept angles in **degrees** and automatically convert them to radians internally using `Math.PI / 180`.
 
 ### Response Format
 ```json
 {
-  "number1": 10,
-  "number2": 3,
-  "operation": "%",
-  "result": 1
+  "number1": 30,
+  "number2": 0,
+  "operation": "sin",
+  "result": 0.5
 }
 ```
 
@@ -127,7 +150,7 @@ node server.js
 
 ## 🧪 Testing Examples
 
-### Using Postman
+### Using Postman - Basic Operations
 
 **Test Modulo Operation:**
 ```
@@ -151,11 +174,44 @@ Content-Type: application/json
 }
 ```
 
+### Using Postman - Trigonometric Functions
+
+**Test Sine Function:**
+```
+POST http://localhost:3000/api/calculate
+Content-Type: application/json
+
+{
+  "number1": 30,
+  "number2": 0,
+  "operation": "sin"
+}
+```
+
+**Expected Response:**
+```json
+{
+  "number1": 30,
+  "number2": 0,
+  "operation": "sin",
+  "result": 0.5
+}
+```
+
 ### Using cURL
+
+**Test Cosine:**
 ```bash
 curl -X POST http://localhost:3000/api/calculate \
   -H "Content-Type: application/json" \
-  -d '{"number1": 10, "number2": 3, "operation": "%"}'
+  -d '{"number1": 60, "number2": 0, "operation": "cos"}'
+```
+
+**Test Tangent:**
+```bash
+curl -X POST http://localhost:3000/api/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"number1": 45, "number2": 0, "operation": "tan"}'
 ```
 
 ## 📈 Learning Journey
@@ -163,7 +219,7 @@ curl -X POST http://localhost:3000/api/calculate \
 This project is part of my structured path toward Full-Stack Development:
 
 * ✅ **Phase 1:** Node.js Basics, Express, HTTP Methods (Completed)
-* ✅ **Mini-Project:** Advanced Calculator with 8 operations (Completed)
+* ✅ **Mini-Project:** Advanced Calculator with 11 operations (Completed)
 * 🔄 **Phase 2:** CRUD Operations & Database Integration (In Progress)
 * 📋 **Phase 3:** Authentication & Security (JWT, Password Hashing)
 * 📋 **Phase 4:** Frontend Integration with React & Next.js
@@ -180,10 +236,20 @@ This project is part of my structured path toward Full-Stack Development:
 
 ### JavaScript Skills
 - ✅ Mathematical operations including modulo
+- ✅ Trigonometric functions with degree-to-radian conversion
+- ✅ Using `Math.PI` constant for calculations
 - ✅ Conditional logic and control flow
 - ✅ Function parameters and return values
 - ✅ JSON data structures
 - ✅ Error handling with status codes
+
+### Mathematical Concepts
+- ✅ Basic arithmetic operations
+- ✅ Modulo (remainder) operation
+- ✅ Power and factorial functions
+- ✅ Square root with validation
+- ✅ Trigonometric functions (sin, cos, tan)
+- ✅ Degree to radian conversion
 
 ### API Design
 - ✅ RESTful endpoint structure
@@ -194,7 +260,7 @@ This project is part of my structured path toward Full-Stack Development:
 ## 🔧 Project Structure
 ```
 node-express-basics/
-├── server.js           # Main Express server
+├── server.js           # Main Express server with 11 operations
 ├── calculator.html     # Calculator UI (glassmorphism design)
 ├── package.json        # Dependencies and scripts
 ├── package-lock.json   # Locked dependency versions
@@ -204,9 +270,11 @@ node-express-basics/
 
 ## 🚀 Future Enhancements
 
-- [ ] Add more mathematical functions (sin, cos, tan)
-- [ ] Implement calculation history
-- [ ] Add user authentication
+- [ ] Add inverse trigonometric functions (arcsin, arccos, arctan)
+- [ ] Add hyperbolic functions (sinh, cosh, tanh)
+- [ ] Implement logarithmic functions (log, ln)
+- [ ] Add calculation history
+- [ ] Implement user authentication
 - [ ] Connect to MongoDB for data persistence
 - [ ] Build React frontend
 - [ ] Add unit tests
