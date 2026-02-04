@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+let calculationHistory = [];
+let nextId = 1; 
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -94,6 +97,18 @@ app.post('/api/calculate', (req, res) => {
   default:
     return res.status(400).json({ error: 'Invalid operation' });
 }
+
+const calculationRecord = {
+    id: nextId++, 
+    number1: number1,
+    number2: number2,
+    operation: operation,
+    result: result,
+    timestamp: new Date().toISOString()
+  };
+
+  calculationHistory.push(calculationRecord);
+
   res.json ({  
     number1: number1,
     number2: number2,
@@ -110,3 +125,9 @@ app.get('/calculator', (req, res) => {
     res.sendFile(__dirname + '/calculator.html');
 });
 
+app.get('/api/history', (req, res) => {
+    res.json({
+        count: calculationHistory.length,  
+        history: calculationHistory       
+    });
+});

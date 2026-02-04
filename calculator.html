@@ -19,6 +19,7 @@
             align-items: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
+            flex-direction: column;
         }
 
         .calculator-container {
@@ -30,6 +31,7 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 400px;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -152,23 +154,191 @@
             font-size: 16px;
             font-weight: normal;
         }
+
+        /* History section styling */
+        .history-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .history-container h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .history-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .history-buttons button {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .history-buttons button:first-child {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .history-buttons button:first-child:hover {
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+        }
+
+        .history-buttons button:last-child {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 5px 15px rgba(250, 112, 154, 0.4);
+        }
+
+        .history-buttons button:last-child:hover {
+            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.6);
+        }
+
+        #history-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        #history-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #history-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        #history-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        #history-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 15px;
+            color: white;
+            border-left: 4px solid #4facfe;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* IMPROVED: Hover effect for history items */
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .history-item-content {
+            flex: 1;
+        }
+
+        /* IMPROVED: Operation icon styling with colors */
+        .operation-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .history-item strong {
+            color: #4facfe;
+            font-size: 18px;
+        }
+
+        .history-item small {
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* NEW: Delete button for individual items */
+        .delete-btn {
+            background: rgba(255, 59, 48, 0.2);
+            border: 1px solid rgba(255, 59, 48, 0.5);
+            color: #ff3b30;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 59, 48, 0.4);
+            transform: scale(1.05);
+        }
+
+        .empty-history {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        /* NEW: Count badge */
+        .count-badge {
+            background: rgba(79, 172, 254, 0.3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+    <!-- Original calculator section -->
     <div class="calculator-container">
         <h1>✨ Calculator</h1>
         
         <div class="input-group">
             <input type="number" id="num1" placeholder="First number">
             <select id="operation">
-                <option value="+">➕</option>
-                <option value="-">➖</option>
-                <option value="*">✖️</option>
-                <option value="/">➗</option>
-                <option value="^">🧪</option>
-                <option value="√">√</option>
-                <option value="!">! (Factorial)</option>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
                 <option value="%">%</option>
+                <option value="^">^</option>
+                <option value="√">√</option>
+                <option value="!">!</option>
                 <option value="sin">sin</option>
                 <option value="cos">cos</option>
                 <option value="tan">tan</option>
@@ -181,7 +351,86 @@
         <div id="result"></div>
     </div>
 
+    <!-- Calculation history section -->
+    <div class="history-container">
+        <h2>📊 Calculation History</h2>
+        
+        <div class="history-buttons">
+            <button onclick="loadHistory()">🔄 Refresh History</button>
+            <button onclick="clearHistory()">🗑️ Clear All</button>
+        </div>
+        
+        <div id="history-list">
+            <div class="empty-history">
+                Loading history... 📝
+            </div>
+        </div>
+    </div>
+
     <script>
+        /**
+         * IMPROVED: Format numbers to max 2 decimal places
+         * Prevents display of very long decimal numbers like 0.333333...
+         */
+        function formatNumber(num) {
+            // If number is integer, return as is
+            if (Number.isInteger(num)) {
+                return num;
+            }
+            // Round to 4 decimal places for display
+            return Math.round(num * 10000) / 10000;
+        }
+
+        /**
+         * IMPROVED: Get colored icon for operation
+         * Returns HTML with colored circle background
+         */
+        function getOperationIcon(operation) {
+            const icons = {
+                '+': { emoji: '➕', color: '#34c759' },    // Green
+                '-': { emoji: '➖', color: '#ff3b30' },    // Red
+                '*': { emoji: '✖️', color: '#ff9500' },    // Orange
+                '/': { emoji: '➗', color: '#007aff' },    // Blue
+                '%': { emoji: '%', color: '#5856d6' },    // Purple
+                '^': { emoji: '🧪', color: '#ff2d55' },    // Pink
+                '√': { emoji: '√', color: '#30d158' },    // Light green
+                '!': { emoji: '!', color: '#ffd60a' },    // Yellow
+                'sin': { emoji: '∿', color: '#64d2ff' },  // Cyan
+                'cos': { emoji: '∿', color: '#bf5af2' },  // Purple
+                'tan': { emoji: '∿', color: '#ff375f' }   // Red-pink
+            };
+            
+            const icon = icons[operation] || { emoji: operation, color: '#8e8e93' };
+            
+            return `<span class="operation-icon" style="background: ${icon.color};">${icon.emoji}</span>`;
+        }
+
+        /**
+         * IMPROVED: Format time as "X minutes ago" or "X hours ago"
+         * More user-friendly than full timestamp
+         */
+        function formatTimeAgo(timestamp) {
+            const now = new Date();
+            const date = new Date(timestamp);
+            const secondsAgo = Math.floor((now - date) / 1000);
+            
+            if (secondsAgo < 60) {
+                return 'just now';
+            } else if (secondsAgo < 3600) {
+                const minutes = Math.floor(secondsAgo / 60);
+                return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            } else if (secondsAgo < 86400) {
+                const hours = Math.floor(secondsAgo / 3600);
+                return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            } else {
+                const days = Math.floor(secondsAgo / 86400);
+                return `${days} day${days > 1 ? 's' : ''} ago`;
+            }
+        }
+
+        /**
+         * Calculate function - sends calculation request to backend
+         */
         function calculate() {
             const num1 = document.getElementById('num1').value;
             const num2 = document.getElementById('num2').value;
@@ -198,8 +447,14 @@
             })
             .then(response => response.json())
             .then(data => {
+                // IMPROVED: Format result with max 4 decimal places
+                const formattedResult = formatNumber(data.result);
+                
                 document.getElementById('result').innerHTML = 
-                    `${data.number1} ${data.operation} ${data.number2} = <strong>${data.result}</strong>`;
+                    `${formatNumber(data.number1)} ${data.operation} ${formatNumber(data.number2)} = <strong>${formattedResult}</strong>`;
+                
+                // Automatically reload history after calculation
+                loadHistory();
             })
             .catch(error => {
                 document.getElementById('result').innerHTML = 
@@ -207,11 +462,93 @@
             });
         }
 
-        // Allow Enter key to calculate
+        /**
+         * Load calculation history from backend API
+         */
+        async function loadHistory() {
+            try {
+                const response = await fetch('http://localhost:3000/api/history');
+                const data = await response.json();
+                
+                displayHistory(data.history);
+                
+            } catch (error) {
+                console.error('Error loading history:', error);
+                document.getElementById('history-list').innerHTML = 
+                    '<div class="empty-history">❌ Failed to load history</div>';
+            }
+        }
+
+        /**
+         * IMPROVED: Display history items with better formatting
+         */
+        function displayHistory(history) {
+            const container = document.getElementById('history-list');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<div class="empty-history">📭 No calculations yet</div>';
+                return;
+            }
+            
+            // IMPROVED: Add count badge
+            let html = `<div class="count-badge">Total: ${history.length} calculation${history.length > 1 ? 's' : ''}</div>`;
+            
+            // Loop backwards to show newest first
+            for (let i = history.length - 1; i >= 0; i--) {
+                const item = history[i];
+                const formattedResult = formatNumber(item.result);
+                const timeAgo = formatTimeAgo(item.timestamp);
+                const operationIcon = getOperationIcon(item.operation);
+                
+                html += `
+                    <div class="history-item">
+                        <div class="history-item-content">
+                            ${operationIcon}
+                            <strong>#${item.id}</strong> - 
+                            ${formatNumber(item.number1)} ${item.operation} ${formatNumber(item.number2)} = 
+                            <strong>${formattedResult}</strong>
+                            <small>🕐 ${timeAgo}</small>
+                        </div>
+                        <button class="delete-btn" onclick="deleteHistoryItem(${item.id})">🗑️ Delete</button>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        /**
+         * NEW: Delete single history item (to be implemented in backend)
+         */
+        function deleteHistoryItem(id) {
+            if (confirm(`Delete calculation #${id}?`)) {
+                alert(`Delete endpoint for item #${id} coming in next lesson! 🚀`);
+            }
+        }
+
+        /**
+         * Clear all calculation history
+         */
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all history?')) {
+                alert('Clear history endpoint coming in next lesson! 🚀');
+            }
+        }
+
+        /**
+         * Allow Enter key to trigger calculation
+         */
         document.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
                 calculate();
             }
+        });
+
+        /**
+         * IMPROVED: Auto-load history when page loads
+         */
+        window.addEventListener('load', function() {
+            loadHistory();
         });
     </script>
 </body>

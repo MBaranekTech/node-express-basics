@@ -1,6 +1,6 @@
 # Node.js & Express Advanced Calculator 🚀
 
-A comprehensive backend learning project demonstrating fundamental and advanced concepts in **Node.js** and **Express.js**, featuring a full-featured calculator with modern glassmorphism UI.
+A comprehensive backend learning project demonstrating fundamental and advanced concepts in **Node.js** and **Express.js**, featuring a full-featured calculator with modern glassmorphism UI and calculation history.
 
 ## 📌 About the Project
 
@@ -8,9 +8,11 @@ This repository showcases my progression in backend development, focusing on:
 
 * **Server Architecture:** Building a robust Express.js environment
 * **HTTP Methods:** Implementation of **GET** and **POST** endpoints
+* **Data Management:** In-memory calculation history storage
 * **Data Validation:** Input validation and error handling
 * **Mathematical Operations:** From basic arithmetic to trigonometric functions
 * **RESTful API Design:** Clean, structured API endpoints
+* **Modern UI/UX:** Glassmorphism design with smooth animations
 
 ## 🧮 Advanced Calculator Features
 
@@ -33,6 +35,16 @@ A modern, full-featured calculator with glassmorphism design supporting:
 - ✅ **Cosine (cos)** - Calculate cosine of angle in degrees
 - ✅ **Tangent (tan)** - Calculate tangent of angle in degrees
 
+### Calculation History Features
+- ✅ **Automatic Storage** - Every calculation is automatically saved
+- ✅ **Real-time Display** - History updates after each calculation
+- ✅ **Colored Operation Icons** - Visual distinction for different operations
+- ✅ **Smart Number Formatting** - Decimal numbers rounded to 4 places
+- ✅ **Relative Timestamps** - "5 minutes ago" instead of full dates
+- ✅ **Calculation Counter** - Total count badge
+- ✅ **Individual Delete** - Remove specific calculations (coming soon)
+- ✅ **Clear All** - Bulk delete functionality (coming soon)
+
 **Access:** `http://localhost:3000/calculator`
 
 ## 🛠️ Tech Stack
@@ -40,6 +52,7 @@ A modern, full-featured calculator with glassmorphism design supporting:
 * **Runtime:** Node.js
 * **Framework:** Express.js v4.x
 * **Frontend:** HTML5, CSS3 (Glassmorphism design)
+* **Data Storage:** In-memory array (RAM)
 * **API Format:** JSON
 * **Testing:** Postman / Thunder Client / Browser DevTools
 
@@ -51,7 +64,8 @@ A modern, full-featured calculator with glassmorphism design supporting:
 | **GET** | `/calculator` | Modern calculator interface | - |
 | **GET** | `/api/info` | Returns learning path information | - |
 | **GET** | `/api/user` | Fetches user data (in-memory) | - |
-| **POST** | `/api/calculate` | Performs mathematical operations | See below |
+| **GET** | `/api/history` | Retrieves all calculation history | - |
+| **POST** | `/api/calculate` | Performs mathematical operations and saves to history | See below |
 
 ### POST /api/calculate - Request Format
 ```json
@@ -59,6 +73,31 @@ A modern, full-featured calculator with glassmorphism design supporting:
   "number1": 30,
   "number2": 0,
   "operation": "sin"
+}
+```
+
+### GET /api/history - Response Format
+```json
+{
+  "count": 5,
+  "history": [
+    {
+      "id": 1,
+      "number1": 10,
+      "number2": 5,
+      "operation": "+",
+      "result": 15,
+      "timestamp": "2026-02-04T14:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "number1": 30,
+      "number2": 0,
+      "operation": "sin",
+      "result": 0.5,
+      "timestamp": "2026-02-04T14:31:00.000Z"
+    }
+  ]
 }
 ```
 
@@ -198,6 +237,25 @@ Content-Type: application/json
 }
 ```
 
+### Using Postman - Get History
+
+**Get All Calculations:**
+```
+GET http://localhost:3000/api/history
+```
+
+**Expected Response:**
+```json
+{
+  "count": 3,
+  "history": [
+    {"id": 1, "number1": 10, "number2": 5, "operation": "+", "result": 15, "timestamp": "2026-02-04T14:30:00.000Z"},
+    {"id": 2, "number1": 20, "number2": 3, "operation": "-", "result": 17, "timestamp": "2026-02-04T14:31:00.000Z"},
+    {"id": 3, "number1": 30, "number2": 0, "operation": "sin", "result": 0.5, "timestamp": "2026-02-04T14:32:00.000Z"}
+  ]
+}
+```
+
 ### Using cURL
 
 **Test Cosine:**
@@ -207,11 +265,9 @@ curl -X POST http://localhost:3000/api/calculate \
   -d '{"number1": 60, "number2": 0, "operation": "cos"}'
 ```
 
-**Test Tangent:**
+**Get History:**
 ```bash
-curl -X POST http://localhost:3000/api/calculate \
-  -H "Content-Type: application/json" \
-  -d '{"number1": 45, "number2": 0, "operation": "tan"}'
+curl http://localhost:3000/api/history
 ```
 
 ## 📈 Learning Journey
@@ -220,6 +276,7 @@ This project is part of my structured path toward Full-Stack Development:
 
 * ✅ **Phase 1:** Node.js Basics, Express, HTTP Methods (Completed)
 * ✅ **Mini-Project:** Advanced Calculator with 11 operations (Completed)
+* ✅ **Phase 1.5:** Calculation History with In-Memory Storage (Completed)
 * 🔄 **Phase 2:** CRUD Operations & Database Integration (In Progress)
 * 📋 **Phase 3:** Authentication & Security (JWT, Password Hashing)
 * 📋 **Phase 4:** Frontend Integration with React & Next.js
@@ -233,15 +290,33 @@ This project is part of my structured path toward Full-Stack Development:
 - ✅ Using `switch` statements for cleaner conditional logic
 - ✅ Implementing comprehensive error handling
 - ✅ Validating user input before processing
+- ✅ Storing data in arrays with `.push()` method
+- ✅ Managing unique IDs with auto-increment pattern
+- ✅ Working with timestamps using `new Date()`
 
 ### JavaScript Skills
 - ✅ Mathematical operations including modulo
 - ✅ Trigonometric functions with degree-to-radian conversion
 - ✅ Using `Math.PI` constant for calculations
+- ✅ Array manipulation (`.push()`, `.length`, indexing)
+- ✅ Object creation and manipulation
 - ✅ Conditional logic and control flow
 - ✅ Function parameters and return values
 - ✅ JSON data structures
 - ✅ Error handling with status codes
+- ✅ Async/await for API requests
+- ✅ Number formatting with `Math.round()`
+
+### Frontend/UI Skills
+- ✅ DOM manipulation with JavaScript
+- ✅ Fetch API for HTTP requests
+- ✅ Dynamic HTML generation
+- ✅ CSS animations and transitions
+- ✅ Glassmorphism design patterns
+- ✅ Responsive layout with Flexbox
+- ✅ Event handling (click, keypress)
+- ✅ User-friendly time formatting
+- ✅ Conditional rendering (empty states)
 
 ### Mathematical Concepts
 - ✅ Basic arithmetic operations
@@ -250,44 +325,124 @@ This project is part of my structured path toward Full-Stack Development:
 - ✅ Square root with validation
 - ✅ Trigonometric functions (sin, cos, tan)
 - ✅ Degree to radian conversion
+- ✅ Number rounding and formatting
 
 ### API Design
 - ✅ RESTful endpoint structure
 - ✅ Consistent JSON response format
 - ✅ Proper HTTP status codes (200, 400)
 - ✅ Input validation patterns
+- ✅ Data persistence (in-memory)
 
 ## 🔧 Project Structure
 ```
 node-express-basics/
-├── server.js           # Main Express server with 11 operations
-├── calculator.html     # Calculator UI (glassmorphism design)
+├── server.js           # Main Express server with 11 operations + history
+├── calculator.html     # Calculator UI with glassmorphism and history display
 ├── package.json        # Dependencies and scripts
 ├── package-lock.json   # Locked dependency versions
 ├── .gitignore          # Git ignore rules
 └── README.md           # This file
 ```
 
+## 🎨 UI Features
+
+### Calculator Interface
+- Modern glassmorphism design with blur effects
+- Gradient backgrounds and smooth transitions
+- Responsive input fields with hover effects
+- Real-time calculation results
+- Enter key support for quick calculations
+
+### History Display
+- Colored operation icons for visual distinction
+- Smart number formatting (max 4 decimal places)
+- Relative timestamps ("5 minutes ago")
+- Total calculation count badge
+- Smooth slide-in animations
+- Custom scrollbar styling
+- Individual delete buttons (UI ready)
+- Hover effects on history items
+- Auto-refresh after each calculation
+- Empty state messaging
+
 ## 🚀 Future Enhancements
 
+### Backend
+- [ ] Add DELETE endpoint for clearing history
+- [ ] Add DELETE endpoint for individual items
+- [ ] Connect to MongoDB for persistent storage
+- [ ] Add user authentication
+- [ ] Implement rate limiting
+- [ ] Add calculation export (CSV/JSON)
+
+### Frontend
+- [ ] Implement actual delete functionality
+- [ ] Add search/filter for history
+- [ ] Add date range filtering
+- [ ] Export history to file
+- [ ] Add keyboard shortcuts
+- [ ] Dark/light theme toggle
+
+### Features
 - [ ] Add inverse trigonometric functions (arcsin, arccos, arctan)
 - [ ] Add hyperbolic functions (sinh, cosh, tanh)
 - [ ] Implement logarithmic functions (log, ln)
-- [ ] Add calculation history
-- [ ] Implement user authentication
-- [ ] Connect to MongoDB for data persistence
-- [ ] Build React frontend
-- [ ] Add unit tests
-- [ ] Deploy to cloud platform
+- [ ] Add constants (π, e)
+- [ ] Expression parser for complex calculations
+- [ ] Scientific notation support
+- [ ] Unit tests with Jest
+- [ ] Deploy to cloud platform (Heroku/Railway)
 
-## 📝 License
+## 📝 Notes
+
+### Data Persistence
+Currently, calculation history is stored **in-memory** on the server:
+- **Advantage:** Simple, fast, perfect for learning
+- **Limitation:** Data is lost when server restarts
+- **Next Step:** Migrate to MongoDB for permanent storage
+
+### Calculation History Structure
+Each calculation is stored as an object:
+```javascript
+{
+  id: 1,                              // Auto-increment unique ID
+  number1: 10,                        // First operand
+  number2: 5,                         // Second operand
+  operation: '+',                     // Operation symbol
+  result: 15,                         // Calculated result
+  timestamp: '2026-02-04T14:30:00.000Z'  // ISO 8601 format
+}
+```
+
+## 📄 License
 
 This is a learning project - feel free to use it for educational purposes!
+
+## 🤝 Contributing
+
+This is a personal learning project, but feedback and suggestions are always welcome! Feel free to open an issue or reach out.
 
 ---
 
 **Author:** Martin Baranek  
 **Learning Focus:** Full-Stack JavaScript Development  
-**Status:** Actively Learning & Building 🚀
+**Current Status:** Actively Learning & Building 🚀  
+**Project Stage:** Phase 1.5 - In-Memory Data Management
 
 Check out my other repositories to see my continuous progress in web development!
+
+---
+
+## 🔗 Quick Links
+
+- **Live Demo:** `http://localhost:3000/calculator`
+- **API Documentation:** See API Endpoints section above
+- **GitHub:** [https://github.com/MBaranekTech/node-express-basics](https://github.com/MBaranekTech/node-express-basics)
+
+## 💡 Learning Resources Used
+
+- [Express.js Documentation](https://expressjs.com/)
+- [MDN Web Docs - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Node.js Documentation](https://nodejs.org/en/docs/)
+- [Math.js Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
