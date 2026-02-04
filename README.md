@@ -1,181 +1,225 @@
-# Node.js & Express API Foundation 🚀
+# Node.js & Express Advanced Calculator 🚀
 
-This project marks my first step into backend development. It serves as a practical demonstration of my skills in **Node.js** and **Express.js**, focusing on understanding the HTTP request/response cycle, middleware integration, and RESTful API design.
+A comprehensive backend learning project demonstrating fundamental and advanced concepts in **Node.js** and **Express.js**, featuring a full-featured calculator with modern glassmorphism UI.
 
 ## 📌 About the Project
 
-The goal of this repository is to demonstrate fundamental backend principles:
+This repository showcases my progression in backend development, focusing on:
 
-* **Server Setup:** Configuring a basic Express.js environment.
-* **HTTP Methods:** Implementation of **GET** (fetching data) and **POST** (sending/creating data).
-* **Data Handling:** Working with JSON format and `express.json()` middleware.
-* **Learning Mindset:** A structured approach to mastering server-side logic.
+* **Server Architecture:** Building a robust Express.js environment
+* **HTTP Methods:** Implementation of **GET** and **POST** endpoints
+* **Data Validation:** Input validation and error handling
+* **Mathematical Operations:** From basic arithmetic to advanced functions
+* **RESTful API Design:** Clean, structured API endpoints
 
-## 🧮 First Mini-Project: Calculator
+## 🧮 Advanced Calculator Features
 
-My first hands-on project to understand the **POST/GET** workflow:
+A modern, full-featured calculator with glassmorphism design supporting:
 
-* **Frontend:** Modern glassmorphism UI with gradient liquid design
-* **Backend:** POST endpoint processing mathematical operations
-* **Key Learning:**
-  + Parsing incoming JSON data with `req.body`
-  + Using **switch statement** to handle multiple operations efficiently
-  + Working with **Math functions** (`Math.pow()`, `Math.sqrt()`)
-  + Implementing **for loops** for iterative calculations (factorial)
-  + **Input validation** (division by zero, negative square roots, factorial constraints)
-  + Returning calculated results via `res.json()`
-  + Understanding the complete request/response cycle
+### Basic Operations
+- ✅ **Addition (+)** - Add two numbers
+- ✅ **Subtraction (-)** - Subtract second number from first
+- ✅ **Multiplication (*)** - Multiply two numbers
+- ✅ **Division (/)** - Divide with zero-check validation
 
-**Supported Operations:**
-- ➕ Addition
-- ➖ Subtraction  
-- ✖️ Multiplication
-- ➗ Division (with zero-check)
-- 🧪 Power (x^y)
-- √ Square Root (with negative number validation)
-- ! Factorial (with non-negative integer validation)
+### Advanced Operations
+- ✅ **Modulo (%)** - Calculate remainder after division
+- ✅ **Power (^)** - Raise number to a power
+- ✅ **Square Root (√)** - Calculate square root (with negative check)
+- ✅ **Factorial (!)** - Calculate factorial (with negative check)
 
 **Access:** `http://localhost:3000/calculator`
 
 ## 🛠️ Tech Stack
 
-* **Language:** JavaScript (Node.js runtime)
-* **Framework:** Express.js
+* **Runtime:** Node.js
+* **Framework:** Express.js v4.x
 * **Frontend:** HTML5, CSS3 (Glassmorphism design)
-* **API Testing:** Postman / Thunder Client
+* **API Format:** JSON
+* **Testing:** Postman / Thunder Client / Browser DevTools
 
 ## 🚦 API Endpoints
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| **GET** | `/` | Welcome message and server status check. |
-| **GET** | `/calculator` | Modern calculator with liquid design. |
-| **GET** | `/api/info` | Returns information about my current learning path. |
-| **GET** | `/api/user` | Fetches user data (currently stored in-memory). |
-| **POST** | `/api/calculate` | Performs mathematical operations (+, -, *, /, ^, √, !). |
-| **POST** | `/api/greet` | Returns a personalized greeting message. |
-| **POST** | `/api/user` | Allows sending new user data to the server. |
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|--------------|
+| **GET** | `/` | Welcome message and server status | - |
+| **GET** | `/calculator` | Modern calculator interface | - |
+| **GET** | `/api/info` | Returns learning path information | - |
+| **GET** | `/api/user` | Fetches user data (in-memory) | - |
+| **POST** | `/api/calculate` | Performs mathematical operations | See below |
 
-### Example POST Request for Calculator (JSON):
-
-**Basic Operations:**
+### POST /api/calculate - Request Format
 ```json
 {
   "number1": 10,
-  "number2": 5,
-  "operation": "+"
-}
-```
-
-**Power:**
-```json
-{
-  "number1": 2,
   "number2": 3,
-  "operation": "^"
+  "operation": "%"
 }
 ```
 
-**Square Root:**
-```json
-{
-  "number1": 16,
-  "number2": 0,
-  "operation": "√"
-}
-```
+### Supported Operations
 
-**Factorial:**
-```json
-{
-  "number1": 5,
-  "number2": 0,
-  "operation": "!"
-}
-```
+| Operation | Symbol | Example | Result |
+|-----------|--------|---------|--------|
+| Addition | `+` | `10 + 5` | `15` |
+| Subtraction | `-` | `10 - 5` | `5` |
+| Multiplication | `*` | `10 * 5` | `50` |
+| Division | `/` | `10 / 5` | `2` |
+| Modulo | `%` | `10 % 3` | `1` |
+| Power | `^` | `2 ^ 3` | `8` |
+| Square Root | `√` | `√16` | `4` |
+| Factorial | `!` | `5!` | `120` |
 
-### Example Response:
+### Response Format
 ```json
 {
   "number1": 10,
-  "number2": 5,
-  "operation": "+",
-  "result": 15
+  "number2": 3,
+  "operation": "%",
+  "result": 1
 }
 ```
 
-### Example POST Request for User (JSON):
+### Error Handling
+
+The API includes validation for:
+- ❌ Division by zero
+- ❌ Modulo by zero
+- ❌ Square root of negative numbers
+- ❌ Factorial of negative numbers
+- ❌ Invalid operations
+
+**Error Response Example:**
 ```json
 {
-  "name": "Martin Baranek",
-  "email": "martin.baranek@example.com",
-  "role": "admin"
+  "error": "Modulo by zero is not allowed"
 }
 ```
-
-## 📈 Full-Stack Learning Roadmap
-
-This repository is part of my structured journey toward becoming a Full-Stack Developer:
-
-* **Phase 1:** Node.js Basics, Express, and HTTP Methods (This project).
-* **Mini-Project 1:** Calculator - Understanding POST/GET workflow with advanced operations.
-* **Phase 2:** CRUD Operations & Database Integration (MongoDB/PostgreSQL).
-* **Phase 3:** Authentication & Security (JWT, Password Hashing).
-* **Phase 4:** Frontend Integration with React & Next.js.
 
 ## 💻 How to Run Locally
 
-Clone the repository:
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/MBaranekTech/node-express-basics.git
-```
-
-Navigate to the directory:
-```bash
 cd node-express-basics
 ```
 
-Install dependencies:
+2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-Start the server:
+3. **Start the server:**
 ```bash
 node server.js
 ```
 
-Access the API:
+4. **Access the application:**
+- Main page: `http://localhost:3000`
+- Calculator: `http://localhost:3000/calculator`
+- API endpoints: Use Postman or browser
 
-* **Main page:** <http://localhost:3000>
-* **Calculator:** <http://localhost:3000/calculator>
-* **API endpoints:** Use Postman or your browser
+## 🧪 Testing Examples
+
+### Using Postman
+
+**Test Modulo Operation:**
+```
+POST http://localhost:3000/api/calculate
+Content-Type: application/json
+
+{
+  "number1": 17,
+  "number2": 5,
+  "operation": "%"
+}
+```
+
+**Expected Response:**
+```json
+{
+  "number1": 17,
+  "number2": 5,
+  "operation": "%",
+  "result": 2
+}
+```
+
+### Using cURL
+```bash
+curl -X POST http://localhost:3000/api/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"number1": 10, "number2": 3, "operation": "%"}'
+```
+
+## 📈 Learning Journey
+
+This project is part of my structured path toward Full-Stack Development:
+
+* ✅ **Phase 1:** Node.js Basics, Express, HTTP Methods (Completed)
+* ✅ **Mini-Project:** Advanced Calculator with 8 operations (Completed)
+* 🔄 **Phase 2:** CRUD Operations & Database Integration (In Progress)
+* 📋 **Phase 3:** Authentication & Security (JWT, Password Hashing)
+* 📋 **Phase 4:** Frontend Integration with React & Next.js
 
 ## 🎯 What I Learned
 
-* ✅ Difference between GET (retrieve data) and POST (send data)
-* ✅ Working with `req.body` to access incoming data
-* ✅ Using `parseFloat()` for data type conversion
-* ✅ Implementing **switch statement** for multiple conditions (more efficient than if-else)
-* ✅ Working with **JavaScript Math functions** (`Math.pow()`, `Math.sqrt()`)
-* ✅ Understanding **for loops** and iterative calculations
-* ✅ **Input validation** - preventing errors (division by zero, negative square roots, factorial constraints)
-* ✅ Returning JSON responses with `res.json()`
-* ✅ Creating multiple endpoints on a single server
-* ✅ Building a complete full-stack mini-application
+### Backend Concepts
+- ✅ Difference between GET (retrieve) and POST (send data)
+- ✅ Working with `req.body` to access incoming JSON data
+- ✅ Data type conversion with `parseFloat()`
+- ✅ Using `switch` statements for cleaner conditional logic
+- ✅ Implementing comprehensive error handling
+- ✅ Validating user input before processing
+
+### JavaScript Skills
+- ✅ Mathematical operations including modulo
+- ✅ Conditional logic and control flow
+- ✅ Function parameters and return values
+- ✅ JSON data structures
+- ✅ Error handling with status codes
+
+### API Design
+- ✅ RESTful endpoint structure
+- ✅ Consistent JSON response format
+- ✅ Proper HTTP status codes (200, 400)
+- ✅ Input validation patterns
+
+## 🔧 Project Structure
+```
+node-express-basics/
+├── server.js           # Main Express server
+├── calculator.html     # Calculator UI (glassmorphism design)
+├── package.json        # Dependencies and scripts
+├── package-lock.json   # Locked dependency versions
+├── .gitignore          # Git ignore rules
+└── README.md           # This file
+```
+
+## 🚀 Future Enhancements
+
+- [ ] Add more mathematical functions (sin, cos, tan)
+- [ ] Implement calculation history
+- [ ] Add user authentication
+- [ ] Connect to MongoDB for data persistence
+- [ ] Build React frontend
+- [ ] Add unit tests
+- [ ] Deploy to cloud platform
+
+## 📝 License
+
+This is a learning project - feel free to use it for educational purposes!
 
 ---
 
-I am constantly improving this project. Check out my other repositories to see my progress!
+**Author:** Martin Baranek  
+**Learning Focus:** Full-Stack JavaScript Development  
+**Status:** Actively Learning & Building 🚀
 
-## About
-
-First steps into Backend development: Node.js, Express, and REST API basics.
-
-### Topics
-
-[javascript](/topics/javascript "Topic: javascript")
-[express](/topics/express "Topic: express")
-[node](/topics/node "Topic: node")
-[dev](/topics/dev "Topic: dev")
-[backend-api](/topics/backend-api "Topic: backend-api")
+Check out my other repositories to see my continuous progress in web development!
