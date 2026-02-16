@@ -56,11 +56,11 @@ node server.js
 
 📡 API ENDPOINTS
 
-GET /                  - Home welcome message
-GET /calculator        - Load the web calculator interface
-POST /api/calculate    - Perform math operations (+, -, *, /, ^, √, !, %, sin, cos, tan)
-GET /api/history       - View history of recent calculations
-GET /api/info          - Get project tech stack info
+GET /                  - Home welcome message <br>
+GET /calculator        - Load the web calculator interface <br>
+POST /api/calculate    - Perform math operations (+, -, *, /, ^, √, !, %, sin, cos, tan) <br>
+GET /api/history       - View history of recent calculations <br>
+GET /api/info          - Get project tech stack info <br>
 
 🎯 LEARNING JOURNEY
 
