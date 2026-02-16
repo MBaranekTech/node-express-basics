@@ -32,7 +32,7 @@ node-express-basics/
 Copy and paste these commands into your terminal:
 
 1. 📥 Clone and enter the project:
-   ```bash
+```bash
 git clone https://github.com/MBaranekTech/node-express-basics.git
 cd node-express-basics
 ```
